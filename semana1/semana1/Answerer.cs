@@ -79,6 +79,14 @@ public static class Answerer
             Console.WriteLine(i);
         }
     }
+
+    // [M2S02] Ex 6 - Separando palavras
+    public static void GetLastWord()
+    {
+        var phrase = "A linguagem de programação C# é muito poderosa";
+        var words = new List<string>(phrase.Split(' '));
+        Console.WriteLine(words[^1]);
+    }
     
     // [M2S02] Ex 7 - Números pares
     public static void ShowOdds()
