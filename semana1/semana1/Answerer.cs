@@ -57,6 +57,27 @@ public static class Answerer
             Console.WriteLine("O carro precisa de revisão");
         }
     }
+
+    public static void OrderNumbers()
+    {
+        var numberArray = new int[4];
+        
+        for (var i = 0; i < numberArray.Length; i += 1)
+        {
+            var currentNumber = GetUserNumber("Digite um número");
+            numberArray[i] = currentNumber;
+        }
+        
+        
+        Console.WriteLine("#####");
+        
+        Array.Sort(numberArray);
+        
+        foreach (var i in numberArray)
+        {
+            Console.WriteLine(i);
+        }
+    }
     
     // [M2S02] Ex 7 - Números pares
     public static void ShowOdds()
