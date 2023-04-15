@@ -28,7 +28,7 @@ public static class Answerer
         {
             >= 0 and < 18 => "menor de idade",
             >= 18 and < 65 => "maior de idade",
-            > 65 => "idoso",
+            >= 65 => "idoso",
             _ => throw new ArgumentOutOfRangeException()
         };
         Console.WriteLine($"O paciente {patientName} é {patientClassification}");
