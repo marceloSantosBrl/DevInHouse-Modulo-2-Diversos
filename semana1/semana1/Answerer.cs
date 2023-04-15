@@ -20,6 +20,7 @@ public static class Answerer
         Console.WriteLine($"The number {num} is {message}");
     }
 
+    // [M2S02] Ex 3 - Nome e Idade
     public static void ClassifyPatient()
     {
         var patientName = ReadInput("Digite o nome do paciente");
@@ -34,6 +35,30 @@ public static class Answerer
         Console.WriteLine($"O paciente {patientName} é {patientClassification}");
     }
 
+    // [M2S02] Ex 4 - Informações de veículos
+    public static void ShowCarStatus()
+    {
+        var brand = ReadInput("Digite a marca do carro");
+        var model = ReadInput("Digite o modelo do carro");
+        var strMileage = ReadInput("Digite a quilometragem");
+        if (!float.TryParse(strMileage,out var mileage))
+        {
+            Console.WriteLine("Valor inválido");
+        }
+        
+        if (mileage < 0)
+        {
+            throw new ArgumentException();
+        }
+        
+        Console.WriteLine($"O carro da marca {brand}, modelo {model}, rodour {mileage}KM");
+        if (mileage > 10000)
+        {
+            Console.WriteLine("O carro precisa de revisão");
+        }
+    }
+    
+    // [M2S02] Ex 7 - Números pares
     public static void ShowOdds()
     {
         int limit;
