@@ -34,6 +34,25 @@ public static class Answerer
         Console.WriteLine($"O paciente {patientName} é {patientClassification}");
     }
 
+    public static void ShowOdds()
+    {
+        int limit;
+        do
+        {
+            limit = GetUserNumber("Digite um número");
+            if (limit <= 0)
+            {
+                Console.WriteLine("Número inválido");
+            }
+        } while (limit <= 0);
+        Console.WriteLine("####");
+        
+        for (var i = 0; i <= limit; i += 2)
+        {
+            Console.WriteLine(i);
+        }
+    }
+
     private static int GetUserNumber(string message)
     {
 

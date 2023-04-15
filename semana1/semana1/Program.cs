@@ -6,6 +6,6 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        Answerer.ClassifyPatient();
+        Answerer.ShowOdds();
     }
 }
