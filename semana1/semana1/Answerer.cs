@@ -128,6 +128,41 @@ public static class Answerer
         
         Console.WriteLine($"O maior número é {maxNumber}");
     }
+
+    // [M2S02] Ex 9 - Média aritmética
+    public static void getMean()
+    {
+        int count = 0;
+        float sum = 0;
+        while (true)
+        {
+            var input = ReadInput("digite um número ou s para sair");
+            if (input == "s")
+            {
+                break;
+            }
+
+            if (float.TryParse(input, out var result))
+            {
+                sum += result;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+
+            count += 1;
+        }
+
+        if (count == 0)
+        {
+            Console.WriteLine("Nenhum número digitado!");
+            return;
+        }
+        
+        Console.WriteLine($"A média é igual a {sum / count}");
+            
+    }
     
     private static int GetUserNumber(string message)
     {
