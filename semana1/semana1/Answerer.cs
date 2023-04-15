@@ -58,6 +58,7 @@ public static class Answerer
         }
     }
 
+    // [M2S02] Ex 5 - Ordenando números
     public static void OrderNumbers()
     {
         var numberArray = new int[4];
@@ -99,6 +100,27 @@ public static class Answerer
         }
     }
 
+    // [M2S02] Ex 8 - O maior número da lista
+    public static void GetGreatestNumber()
+    {
+        
+        var numberArray = new int[5];
+        var maxNumber = int.MinValue;
+        
+        for (var i = 0; i < numberArray.Length; i += 1)
+        {
+            var currentNumber = GetUserNumber("Digite um número");
+            numberArray[i] = currentNumber;
+            
+            if (currentNumber > maxNumber)
+            {
+                maxNumber = currentNumber;
+            }
+        }
+        
+        Console.WriteLine($"O maior número é {maxNumber}");
+    }
+    
     private static int GetUserNumber(string message)
     {
 
@@ -106,7 +128,7 @@ public static class Answerer
         
         if (!int.TryParse(string1,out var num1))
         {
-            Console.WriteLine("Número inválido");
+            throw new ArgumentException("Número inválido");
         }
 
         return num1;
