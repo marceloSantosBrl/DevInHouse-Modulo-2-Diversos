@@ -11,7 +11,8 @@ public static class Answerer
         var result = num1 + num2;
         Console.WriteLine(result);
     }
-
+    
+    //[M2S02] Ex 2 - Par ou ímpar
     public static void EvenOrOdd()
     {
         var num = GetUserNumber("Digite um úmero");
@@ -19,11 +20,24 @@ public static class Answerer
         Console.WriteLine($"The number {num} is {message}");
     }
 
+    public static void ClassifyPatient()
+    {
+        var patientName = ReadInput("Digite o nome do paciente");
+        var patientAge = GetUserNumber("Digite a idade do paciente");
+        var patientClassification = patientAge switch
+        {
+            >= 0 and < 18 => "menor de idade",
+            >= 18 and < 65 => "maior de idade",
+            > 65 => "idoso",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+        Console.WriteLine($"O paciente {patientName} é {patientClassification}");
+    }
+
     private static int GetUserNumber(string message)
     {
-        Console.WriteLine(message);
-        
-        var string1 = Console.ReadLine();
+
+        var string1 = ReadInput(message);
         
         if (!int.TryParse(string1,out var num1))
         {
@@ -32,5 +46,10 @@ public static class Answerer
 
         return num1;
     }
-    
+
+    private static string ReadInput(string message)
+    {
+        Console.WriteLine(message);
+        return Console.ReadLine() ?? string.Empty;
+    }
 }
