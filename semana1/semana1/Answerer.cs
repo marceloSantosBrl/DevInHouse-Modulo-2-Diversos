@@ -1,12 +1,21 @@
 namespace semana1;
 
+internal enum Operation
+{
+    Exit = -1,
+    Plus,
+    Minus,
+    Times,
+    Division,
+}
+
 public static class Answerer
 {
     // [M2S02] Ex 1 - Soma de números
     public static void NumberSum()
     {
-        var num1 = GetUserNumber("Digite um número");
-        var num2 = GetUserNumber("Digite outro número");
+        var num1 = GetUserInt("Digite um número");
+        var num2 = GetUserInt("Digite outro número");
         
         var result = num1 + num2;
         Console.WriteLine(result);
@@ -15,7 +24,7 @@ public static class Answerer
     //[M2S02] Ex 2 - Par ou ímpar
     public static void EvenOrOdd()
     {
-        var num = GetUserNumber("Digite um úmero");
+        var num = GetUserInt("Digite um úmero");
         var message = num % 2 == 0 ? "even" : "odd";
         Console.WriteLine($"The number {num} is {message}");
     }
@@ -24,7 +33,7 @@ public static class Answerer
     public static void ClassifyPatient()
     {
         var patientName = ReadInput("Digite o nome do paciente");
-        var patientAge = GetUserNumber("Digite a idade do paciente");
+        var patientAge = GetUserInt("Digite a idade do paciente");
         var patientClassification = patientAge switch
         {
             >= 0 and < 18 => "menor de idade",
@@ -40,15 +49,11 @@ public static class Answerer
     {
         var brand = ReadInput("Digite a marca do carro");
         var model = ReadInput("Digite o modelo do carro");
-        var strMileage = ReadInput("Digite a quilometragem");
-        if (!float.TryParse(strMileage,out var mileage))
-        {
-            Console.WriteLine("Valor inválido");
-        }
-        
+        var mileage = GetUserFloat("Digite a quilometragem");
+
         if (mileage < 0)
         {
-            throw new ArgumentException();
+            throw new ArgumentOutOfRangeException();
         }
         
         Console.WriteLine($"O carro da marca {brand}, modelo {model}, rodour {mileage}KM");
@@ -59,13 +64,14 @@ public static class Answerer
     }
 
     // [M2S02] Ex 5 - Ordenando números
+
     public static void OrderNumbers()
     {
         var numberArray = new int[4];
         
         for (var i = 0; i < numberArray.Length; i += 1)
         {
-            var currentNumber = GetUserNumber("Digite um número");
+            var currentNumber = GetUserInt("Digite um número");
             numberArray[i] = currentNumber;
         }
         
@@ -81,20 +87,22 @@ public static class Answerer
     }
 
     // [M2S02] Ex 6 - Separando palavras
+
     public static void GetLastWord()
     {
         var phrase = "A linguagem de programação C# é muito poderosa";
         var words = new List<string>(phrase.Split(' '));
         Console.WriteLine(words[^1]);
     }
-    
+
     // [M2S02] Ex 7 - Números pares
+
     public static void ShowOdds()
     {
         int limit;
         do
         {
-            limit = GetUserNumber("Digite um número");
+            limit = GetUserInt("Digite um número");
             if (limit <= 0)
             {
                 Console.WriteLine("Número inválido");
@@ -109,15 +117,16 @@ public static class Answerer
     }
 
     // [M2S02] Ex 8 - O maior número da lista
+
     public static void GetGreatestNumber()
     {
         
-        var numberArray = new int[5];
-        var maxNumber = int.MinValue;
+        var numberArray = new float[5];
+        var maxNumber = float.MinValue;
         
         for (var i = 0; i < numberArray.Length; i += 1)
         {
-            var currentNumber = GetUserNumber("Digite um número");
+            var currentNumber = GetUserFloat("Digite um número");
             numberArray[i] = currentNumber;
             
             if (currentNumber > maxNumber)
@@ -130,26 +139,21 @@ public static class Answerer
     }
 
     // [M2S02] Ex 9 - Média aritmética
-    public static void getMean()
+
+    public static void GetMean()
     {
-        int count = 0;
+        var count = 0;
         float sum = 0;
         while (true)
         {
             var input = ReadInput("digite um número ou s para sair");
+            
             if (input == "s")
             {
                 break;
             }
 
-            if (float.TryParse(input, out var result))
-            {
-                sum += result;
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
+            sum += float.Parse(input);
 
             count += 1;
         }
@@ -163,23 +167,82 @@ public static class Answerer
         Console.WriteLine($"A média é igual a {sum / count}");
             
     }
-    
-    private static int GetUserNumber(string message)
+
+    // [M2S02] Ex 10 - Calculadora
+    public static void RunCalculator()
+    {
+
+        while (true)
+        {
+            var numberInput = GetUserInt("Escolha uma das seguintes operações:" +
+                                         "\n0 - adição \n1 - subtração\n2 - multiplicação\n3 - divisão\n-1 - Sair");
+
+            var chosenOperation = (Operation) numberInput;
+            if (!Enum.IsDefined(typeof(Operation), chosenOperation))
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            if (chosenOperation == Operation.Exit)
+            {
+                break;
+            }
+            var firstNumber = GetUserFloat("Digite o primeiro número");
+            var secondNumber = GetUserFloat("Digite o segundo número");
+            Console.WriteLine("O Resultado da operação é:");
+            ShowCalculationResult(chosenOperation, firstNumber, secondNumber);
+        }
+        
+    }
+
+    private static int GetUserInt(string message)
     {
 
         var string1 = ReadInput(message);
-        
-        if (!int.TryParse(string1,out var num1))
+        return int.Parse(string1);
+    }
+
+    private static float GetUserFloat(string message)
+    {
+        var input = ReadInput(message);
+        if (!float.TryParse(input, out var result))
         {
-            throw new ArgumentException("Número inválido");
+            Console.WriteLine("Valor inválido");
         }
 
-        return num1;
+        return result;
     }
 
     private static string ReadInput(string message)
     {
         Console.WriteLine(message);
         return Console.ReadLine() ?? string.Empty;
+    }
+
+    private static void CustomDivision(float first, float second)
+    {
+        var result = second == 0 ? 
+            "Divisão por zero" : $"{first / second}";
+        Console.WriteLine(result);
+    }
+
+    private static void ShowCalculationResult(Operation chosenOperation, float firstNumber, float secondNumber)
+    {
+        switch (chosenOperation)
+        {
+            case Operation.Plus:
+                Console.WriteLine(firstNumber + secondNumber);
+                break;
+            case Operation.Minus:
+                Console.WriteLine(firstNumber - secondNumber);
+                break;
+            case Operation.Times:
+                Console.WriteLine(firstNumber * secondNumber);
+                break;
+            case Operation.Division:
+                CustomDivision(firstNumber, secondNumber);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
