@@ -1,9 +1,14 @@
-namespace CadastrodeCarros;
+namespace CadastroDeCarros;
 
 public class CarList
 {
     // [M2S03] Ex 7 - Crie uma variável do tipo lista de carro, para armazenar as Instâncias de carro
-    private List<Car> Cars { get;  } = new();
+    public CarList(List<Car> cars)
+    {
+        Cars = cars;
+    }
+
+    private List<Car> Cars { get;  }
     
     // [M2S03] Ex 8 - Crie um método para Cadastrar novos Carros na lista
 
@@ -14,7 +19,7 @@ public class CarList
     }
 
 
-    private static string ReadConsole(string message)
+    public static string ReadConsole(string message)
     {
         Console.WriteLine(message);
         return Console.ReadLine() ?? "";
@@ -40,6 +45,7 @@ public class CarList
 
     private static void ShowOwner(Owner owner)
     {
+        Console.WriteLine("");
         Console.WriteLine(owner.Name);
         Console.WriteLine(owner.Cpf);
         Console.WriteLine(owner.Phone);
@@ -52,6 +58,7 @@ public class CarList
         Console.WriteLine(car.Plate);
         Console.WriteLine(car.Color);
         ShowOwner(car.Owner);
+        Console.WriteLine("#######");
     }
 
     // [M2S03] Ex 9 - Crie um método para exibir a lista de carros e seus respectivos proprietários

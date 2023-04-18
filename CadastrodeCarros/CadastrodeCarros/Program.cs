@@ -1,11 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using CadastrodeCarros;
-
-namespace CadastrodeCarros
+namespace CadastroDeCarros
 {
     internal class Program
     {
+        private static CarList? _carList;
         public static void Main(string[] args)
         {
             // [M2S03] Ex 4 - Crie Instâncias para a classe Proprietario
@@ -16,9 +15,37 @@ namespace CadastrodeCarros
             var firstCar = new Car("toyota", "corolla", "kjs887", "blue",firstOwner);
             var secondCar = new Car("honda", "civic", "tss298", "red", secondOwner);
             var thirdCar = new Car("fiat", "toro", "ghj774", "grey", thirdOwner);
-            
-            // [M2S03] Ex 7 - Crie uma variável do tipo lista de carro, para armazenar as Instâncias de carro
-            List<Car> carList = new () { firstCar, secondCar, thirdCar };
+            var cars = new List<Car>() { firstCar, secondCar, thirdCar };
+            _carList = new CarList(cars);
+            RunSelector();
+        }
+        
+        private static void RunSelector()
+        {
+            var isTerminated = false;
+
+            while (!isTerminated)
+            {
+                Console.WriteLine("Digite uma opção para continuar:\n" +
+                                  "1 - Cadastrar Carro\n" +
+                                  "2 - Consultar Carros\n" +
+                                  "3 - Sair");
+                var option = Console.ReadLine();
+                switch (option)
+                {
+                    case "1":
+                        _carList!.RegisterCar();
+                        break;
+                    case "2":
+                        _carList!.ShowCarList();
+                        break;
+                    case "3":
+                        isTerminated = true;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
     }   
 }

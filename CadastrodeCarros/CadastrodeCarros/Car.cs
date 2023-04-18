@@ -1,4 +1,4 @@
-namespace CadastrodeCarros;
+namespace CadastroDeCarros;
 
 // [M2S03] Ex 5 - Crie a classe Carro
 public struct Car
