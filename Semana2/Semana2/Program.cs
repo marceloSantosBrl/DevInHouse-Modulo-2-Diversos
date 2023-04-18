@@ -15,5 +15,17 @@ namespace Semana2
         {
             return a + b;
         }
+
+        // [M2S03] Ex 2 - Criar Sobrecargas do método Soma de números
+        public static double Soma(double a, double b)
+        {
+            return a + b;
+        }
+
+        // [M2S03] Ex 2 - Criar Sobrecargas do método Soma de números
+        public static double Soma(double a, double b, double c)
+        {
+            return a + b + c;
+        }
     }
 }
