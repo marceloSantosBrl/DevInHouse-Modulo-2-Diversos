@@ -37,4 +37,29 @@ public class CarList
         var owner = MakeOwner();
         return new Car(brand, model, plate, color, owner);
     }
+
+    private static void ShowOwner(Owner owner)
+    {
+        Console.WriteLine(owner.Name);
+        Console.WriteLine(owner.Cpf);
+        Console.WriteLine(owner.Phone);
+    }
+
+    private static void ShowCar(Car car)
+    {
+        Console.WriteLine(car.Brand);
+        Console.WriteLine(car.Model);
+        Console.WriteLine(car.Plate);
+        Console.WriteLine(car.Color);
+        ShowOwner(car.Owner);
+    }
+
+    // [M2S03] Ex 9 - Crie um método para exibir a lista de carros e seus respectivos proprietários
+    public void ShowCarList()
+    {
+        foreach (var car in Cars)
+        {
+            ShowCar(car);
+        }
+    }
 }
