@@ -16,6 +16,9 @@ namespace CadastrodeCarros
             var firstCar = new Car("toyota", "corolla", "kjs887", "blue",firstOwner);
             var secondCar = new Car("honda", "civic", "tss298", "red", secondOwner);
             var thirdCar = new Car("fiat", "toro", "ghj774", "grey", thirdOwner);
+            
+            // [M2S03] Ex 7 - Crie uma variável do tipo lista de carro, para armazenar as Instâncias de carro
+            List<Car> carList = new () { firstCar, secondCar, thirdCar };
         }
     }   
 }
