@@ -6,12 +6,16 @@ namespace CadastrodeCarros
 {
     internal class Program
     {
-        // [M2S03] Ex 4 - Crie Instâncias para a classe Proprietario
         public static void Main(string[] args)
         {
+            // [M2S03] Ex 4 - Crie Instâncias para a classe Proprietario
             var firstOwner = new Owner("Marcelo", "84578942536", "67984447856");
             var secondOwner = new Owner("Andre", "45678997745", "488782245889");
             var thirdOwner = new Owner("Silva", "455477811788", "445858844565");
+            // [M2S03] Ex 6 - Crie Instâncias para a classe carro
+            var firstCar = new Car("toyota", "corolla", "kjs887", "blue",firstOwner);
+            var secondCar = new Car("honda", "civic", "tss298", "red", secondOwner);
+            var thirdCar = new Car("fiat", "toro", "ghj774", "grey", thirdOwner);
         }
     }   
 }

@@ -7,9 +7,9 @@ public struct Car
     private string Model { get; }
     private string Plate { get; }
     private string Color { get; }
-    private string Owner { get; }
+    private Owner Owner { get; }
 
-    public Car(string brand, string model, string plate, string color, string owner)
+    public Car(string brand, string model, string plate, string color, Owner owner)
     {
         this.Brand = brand;
         this.Model = model;
