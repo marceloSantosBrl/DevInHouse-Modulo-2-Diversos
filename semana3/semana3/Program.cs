@@ -8,5 +8,9 @@ internal class Semana3
     {
         var person = new Person("Marcelo", 20, "Praça da Natureza");
         person.Salute();
+        var bankAccount = new BankAccount(1233345);
+        bankAccount.Deposit(20);
+        bankAccount.Withdrawal(10);
+        Console.WriteLine(bankAccount.Balance);
     }
 }
