@@ -6,11 +6,10 @@ internal class Semana3
 {
     public static void Main(string[] args)
     {
-        var person = new Person("Marcelo", 20, "Praça da Natureza");
-        person.Salute();
-        var bankAccount = new BankAccount(1233345);
-        bankAccount.Deposit(20);
-        bankAccount.Withdrawal(10);
-        Console.WriteLine(bankAccount.Balance);
+        var client = new Client("marcelo", "85444888699");
+        var bankAccount = new ComplexBankAccount("87978", client);
+        bankAccount.Deposit(800);
+        bankAccount.Withdrawal(100);
+        bankAccount.ShowData();
     }
 }
