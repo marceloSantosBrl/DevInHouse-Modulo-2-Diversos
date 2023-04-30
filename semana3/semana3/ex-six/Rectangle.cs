@@ -11,7 +11,7 @@ public class Rectangle
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(Height), "Altura inválida");
+                throw new ArgumentOutOfRangeException(nameof(value), "Altura inválida");
             }
             _height = value;
         }
@@ -27,7 +27,7 @@ public class Rectangle
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(Width), "Largura inválida");
+                throw new ArgumentOutOfRangeException(nameof(value), "Largura inválida");
             }
 
             _width = value;

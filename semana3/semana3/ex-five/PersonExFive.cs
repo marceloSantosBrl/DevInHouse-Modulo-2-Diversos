@@ -10,7 +10,7 @@ public class PersonExFive
         {
             if (value < 0 )
             {
-                throw new ArgumentOutOfRangeException(nameof(Age), "Idade inválida");
+                throw new ArgumentOutOfRangeException(nameof(value), "Idade inválida");
             }
 
             _age = value;
